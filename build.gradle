@@ -1,0 +1,36 @@
+
+
+
+plugins {
+	id 'org.springframework.boot' version '2.2.11.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.app.akka.aot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	compile 'org.scala-lang:scala-library:2.10.4'
+	compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.10'
+	compile group: 'com.typesafe.akka', name: 'akka-actor_2.13', version: '2.6.10'
+	compile group: 'com.typesafe.akka', name: 'akka-cluster-typed_2.13', version: '2.6.10'
+	compile group: 'com.typesafe.akka', name: 'akka-cluster-sharding-typed_2.13', version: '2.6.10'
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+	compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.4'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+test {
+	useJUnitPlatform()
+}
