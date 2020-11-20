@@ -20,13 +20,20 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	compile 'org.scala-lang:scala-library:2.10.4'
-	compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.10'
-	compile group: 'com.typesafe.akka', name: 'akka-actor_2.13', version: '2.6.10'
-	compile group: 'com.typesafe.akka', name: 'akka-cluster-typed_2.13', version: '2.6.10'
-	compile group: 'com.typesafe.akka', name: 'akka-cluster-sharding-typed_2.13', version: '2.6.10'
+	compile 'org.scala-lang:scala-library:2.13.4'
+	compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-actor_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-cluster-typed_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-cluster-sharding-typed_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-serialization-jackson_2.13', version: '2.6.1'
+	//compile group: 'com.typesafe.akka', name: 'akka-http-jackson_2.13', version: '2.6.1'
+	//compile group: 'com.typesafe.akka', name: 'akka-http_2.13', version: '10.1.11'
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
-	compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.4'
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+
+	//compile group: 'io.springfox', name: 'io.springfox', version: '2.4.0'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 }

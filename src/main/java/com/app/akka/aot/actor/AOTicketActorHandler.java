@@ -13,14 +13,15 @@ public class AOTicketActorHandler implements Command{
     private String ticketID;
     private Stage stage;
 
-    public final ActorRef<AOTicketResult> replyTo;
+    public final ActorRef<AOTResultData> replyTo;
 
     public AOTicketActorHandler(ClientInputData clientInputData,
                                 String ticketID,
-                                ActorRef<AOTicketResult> replyTo,
+                                ActorRef<AOTResultData> replyTo,
                                 Stage stage) {
         this.clientInputData = clientInputData;
         this.ticketID = ticketID;
         this.replyTo = replyTo;
+        this.stage = stage;
     }
 }

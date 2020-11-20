@@ -105,7 +105,7 @@ public class ClientAOTicket extends AbstractBehavior<Command> {
                             if (exc == null){
                                 this.status = Status.SUCCESS;
                                 if(stage.equals(Stage.END)){
-                                    return new AOTicketSuccessHandler(aoTicketActorHandler.getTicketID(), aoTicketActorHandler.getReplyTo());
+                                    return new AOTicketSuccessHandler(aoTicketActorHandler.getTicketID(), aoTicketActorHandler.getStage(), "", aoTicketActorHandler.getReplyTo());
                                 }
                                 else
                                     return new AOTicketActorHandler(aoTicketActorHandler.getClientInputData(),
@@ -126,15 +126,20 @@ public class ClientAOTicket extends AbstractBehavior<Command> {
 
 
     private Behavior<Command> processAOTicketFailures(AOTTicketFailureHandler ticketFailureHandler){
-        ticketFailureHandler.replyTo.tell(new AOTFailureData(ticketFailureHandler.getTicketID(),
+        ticketFailureHandler.replyTo.tell(new AOTResultData(ticketFailureHandler.getTicketID(),
                                                             ticketFailureHandler.getStage(),
-                                                            ticketFailureHandler.getReason()
+                                                            ticketFailureHandler.getReason(),
+                                                            Status.FAILURE
                                                             ));
         return this;
     }
 
     private Behavior<Command> processAOTicketSuccess(AOTicketSuccessHandler ticketSuccessHandler){
-        ticketSuccessHandler.replyTo.tell(new AOTSuccessData(ticketSuccessHandler.getTicketID()));
+        ticketSuccessHandler.replyTo.tell(new AOTResultData(ticketSuccessHandler.getTicketID(),
+                                                            ticketSuccessHandler.getStage(),
+                                                            ticketSuccessHandler.getReason(),
+                                                            Status.FAILURE
+        ));
         return this;
     }
 

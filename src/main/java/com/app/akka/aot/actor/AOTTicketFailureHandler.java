@@ -13,9 +13,9 @@ public class AOTTicketFailureHandler  implements  Command{
     private Stage stage;
     private String reason;
 
-    public final ActorRef<AOTicketResult> replyTo;
+    public final ActorRef<AOTResultData> replyTo;
 
-    public AOTTicketFailureHandler(String ticketID, Stage stage, ActorRef<AOTicketResult> replyTo, String reason) {
+    public AOTTicketFailureHandler(String ticketID, Stage stage, ActorRef<AOTResultData> replyTo, String reason) {
         this.ticketID = ticketID;
         this.stage = stage;
         this.replyTo = replyTo;

@@ -1,6 +1,7 @@
 package com.app.akka.aot.actor;
 
 import akka.actor.typed.ActorRef;
+import com.app.akka.aot.util.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,5 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AOTicketSuccessHandler implements Command{
     private String ticketID;
-    public final ActorRef<AOTicketResult> replyTo;
+    private Stage stage;
+    private String reason;
+    public final ActorRef<AOTResultData> replyTo;
 }

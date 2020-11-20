@@ -1,4 +1,4 @@
 package com.app.akka.aot.actor;
 
-public interface Command {
+public interface Command extends CborSerializable{
 }
