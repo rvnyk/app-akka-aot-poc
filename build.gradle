@@ -35,6 +35,9 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
 
+	//reactive mongo for Akka
+	compile group: 'com.github.scullxbones', name: 'akka-persistence-mongo-rxmongo_2.13', version: '3.0.5'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
 

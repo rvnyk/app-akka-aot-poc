@@ -105,7 +105,9 @@ public class ClientAOTicket extends AbstractBehavior<Command> {
                             if (exc == null){
                                 this.status = Status.SUCCESS;
                                 if(stage.equals(Stage.END)){
-                                    return new AOTicketSuccessHandler(aoTicketActorHandler.getTicketID(), aoTicketActorHandler.getStage(), "", aoTicketActorHandler.getReplyTo());
+                                    aoTicketActorHandler.setStage(stage);
+                                    this.stage = stage;
+                                    return new AOTicketSuccessHandler(aoTicketActorHandler.getTicketID(), aoTicketActorHandler.getStage(), "Account Creation Completed Successfully", aoTicketActorHandler.getReplyTo());
                                 }
                                 else
                                     return new AOTicketActorHandler(aoTicketActorHandler.getClientInputData(),
@@ -138,7 +140,7 @@ public class ClientAOTicket extends AbstractBehavior<Command> {
         ticketSuccessHandler.replyTo.tell(new AOTResultData(ticketSuccessHandler.getTicketID(),
                                                             ticketSuccessHandler.getStage(),
                                                             ticketSuccessHandler.getReason(),
-                                                            Status.FAILURE
+                                                            Status.SUCCESS
         ));
         return this;
     }
