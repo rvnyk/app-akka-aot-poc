@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "4d6288fc-c305-48ba-85a4-f9bdaca46aa1",
+		"name": "Akka-aot-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/aot/submit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": {\n        \"addressLine1\": \"1234 Random Street\",\n        \"addressLine2\": \"Random City\"\n    },\n    \"basicInfo\": {\n        \"age\": \"25\",\n        \"dob\": \"01-01-2000\",\n        \"firstName\": \"FirstName\",\n        \"gender\": \"Male\",\n        \"lastName\": \"LastName\"\n    },\n    \"employment\": {\n        \"designation\": \"Engineer\",\n        \"employerName\": \"Acme Inc\"\n    },\n    \"phone\": {\n        \"phoneNumber\": \"123-765-7211\",\n        \"phoneType\": \"Mobile\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/aot/submit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"aot",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/aot/submit/2074283060?stage=ADDRESS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": {\n        \"addressLine1\": \"1234 Random Street\",\n        \"addressLine2\": \"Random City\"\n    },\n    \"basicInfo\": {\n        \"age\": \"25\",\n        \"dob\": \"01-01-2000\",\n        \"firstName\": \"firstName\",\n        \"gender\": \"Male\",\n        \"lastName\": \"LastName\"\n    },\n    \"employment\": {\n        \"designation\": \"Engineer\",\n        \"employerName\": \"Acme Inc\"\n    },\n    \"phone\": {\n        \"phoneNumber\": \"123-765-7211\",\n        \"phoneType\": \"Mobile\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/aot/submit/2074283060?stage=ADDRESS",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"aot",
+						"submit",
+						"2074283060"
+					],
+					"query": [
+						{
+							"key": "stage",
+							"value": "ADDRESS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/aot/query/2074283060",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/aot/query/2074283060",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"aot",
+						"query",
+						"2074283060"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
