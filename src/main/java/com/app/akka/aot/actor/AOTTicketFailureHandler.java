@@ -12,13 +12,15 @@ public class AOTTicketFailureHandler  implements  Command{
     private String ticketID;
     private Stage stage;
     private String reason;
+    private ClientInputData clientInputData;
 
     public final ActorRef<AOTResultData> replyTo;
 
-    public AOTTicketFailureHandler(String ticketID, Stage stage, ActorRef<AOTResultData> replyTo, String reason) {
+    public AOTTicketFailureHandler(String ticketID, Stage stage, String reason, ClientInputData clientInputData, ActorRef<AOTResultData> replyTo) {
         this.ticketID = ticketID;
         this.stage = stage;
-        this.replyTo = replyTo;
         this.reason = reason;
+        this.clientInputData = clientInputData;
+        this.replyTo = replyTo;
     }
 }
