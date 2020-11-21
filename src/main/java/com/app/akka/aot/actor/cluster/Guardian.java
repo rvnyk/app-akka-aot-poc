@@ -5,12 +5,11 @@ import akka.actor.typed.ActorSystem;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.cluster.sharding.typed.javadsl.ClusterSharding;
-import com.app.akka.aot.actor.ClientAOTicket;
+import com.app.akka.aot.actor.memory.ClientAOTicket;
+import com.app.akka.aot.actor.persistent.ClientAOTicketPersistent;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import lombok.Data;
 import lombok.Getter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -44,7 +43,8 @@ public class Guardian {
   public  Behavior<Void> createsystemBehaviour() {
     System.out.println("createBehaviour() called");
     return Behaviors.setup(context -> {
-      ClientAOTicket.initSharding(context.getSystem());
+      //ClientAOTicket.initSharding(context.getSystem());
+      ClientAOTicketPersistent.initSharding(context.getSystem());
       this.system = context.getSystem();
       sharding = ClusterSharding.get(system);
       timeout = system.settings().config().getDuration("akka.cluster.auto-down-unreachable-after");

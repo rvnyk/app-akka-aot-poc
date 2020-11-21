@@ -17,7 +17,11 @@ public class DownstreamService {
         //Runtime.getRuntime().addShutdownHook(new Thread(() -> callBasicService.complete(Done.getInstance())));
         CompletableFuture.runAsync(() -> {
             System.out.println("Calling Basic Profile Service for clientID : " + clientID);
-            callBasicService.complete(Done.getInstance());
+            if(basicInfo.getFirstName().equalsIgnoreCase("Fail")){
+                callBasicService.completeExceptionally(new Exception("Stubbed to fail basic Info Call"));
+            }
+            else
+                callBasicService.complete(Done.getInstance());
         });
         return callBasicService;
     }
@@ -27,7 +31,11 @@ public class DownstreamService {
         //Runtime.getRuntime().addShutdownHook(new Thread(() -> callBasicService.complete(Done.getInstance())));
         CompletableFuture.runAsync(() -> {
             System.out.println("Calling Address Service for clientID : " + clientID);
-            callAddressService.complete(Done.getInstance());
+            if(address.getAddressLine1().equalsIgnoreCase("Fail")){
+                callAddressService.completeExceptionally(new Exception("Stubbed to fail Address Service  Call"));
+            }
+            else
+                callAddressService.complete(Done.getInstance());
         });
         return callAddressService;
     }

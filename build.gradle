@@ -24,8 +24,11 @@ dependencies {
 	compile group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.1'
 	compile group: 'com.typesafe.akka', name: 'akka-actor_2.13', version: '2.6.1'
 	compile group: 'com.typesafe.akka', name: 'akka-cluster-typed_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-persistence-typed_2.13', version: '2.6.1'
 	compile group: 'com.typesafe.akka', name: 'akka-cluster-sharding-typed_2.13', version: '2.6.1'
 	compile group: 'com.typesafe.akka', name: 'akka-serialization-jackson_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-stream_2.13', version: '2.6.1'
+
 	//compile group: 'com.typesafe.akka', name: 'akka-http-jackson_2.13', version: '2.6.1'
 	//compile group: 'com.typesafe.akka', name: 'akka-http_2.13', version: '10.1.11'
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
@@ -37,6 +40,11 @@ dependencies {
 
 	//reactive mongo for Akka
 	compile group: 'com.github.scullxbones', name: 'akka-persistence-mongo-rxmongo_2.13', version: '3.0.5'
+	compile group: 'com.typesafe.akka', name: 'akka-persistence-query_2.13', version: '2.6.1'
+	compile group: 'com.typesafe.akka', name: 'akka-persistence_2.13', version: '2.6.1'
+
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
