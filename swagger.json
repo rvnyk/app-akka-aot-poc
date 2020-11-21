@@ -1,0 +1,342 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Create ticket for registering client",
+    "title": "AOT Akka Cluster POC ",
+    "license": {}
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "ao-ticket-controller",
+      "description": "AO Ticket Controller"
+    }
+  ],
+  "paths": {
+    "/aot/query/{ticketid}": {
+      "get": {
+        "tags": [
+          "ao-ticket-controller"
+        ],
+        "summary": "queryTicket",
+        "operationId": "queryTicketUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ticketid",
+            "in": "path",
+            "description": "ticketid",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CompletableFuture«ResponseEntity«AOTicketCurrentInfo»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/aot/submit": {
+      "post": {
+        "tags": [
+          "ao-ticket-controller"
+        ],
+        "summary": "submitAOTicket",
+        "operationId": "submitAOTicketUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "clientInputData",
+            "description": "clientInputData",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientInputData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CompletableFuture«ResponseEntity«AOTResultData»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/aot/submit/{ticketid}": {
+      "post": {
+        "tags": [
+          "ao-ticket-controller"
+        ],
+        "summary": "updateAOTicket",
+        "operationId": "updateAOTicketUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ticketid",
+            "in": "path",
+            "description": "ticketid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "stage",
+            "in": "query",
+            "description": "stage",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "BASICINFO",
+              "PHONE",
+              "EMPLOYMENT",
+              "ADDRESS",
+              "END"
+            ]
+          },
+          {
+            "in": "body",
+            "name": "clientInputData",
+            "description": "clientInputData",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientInputData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CompletableFuture«ResponseEntity«AOTResultData»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "addressLine1": {
+          "type": "string"
+        },
+        "addressLine2": {
+          "type": "string"
+        }
+      }
+    },
+    "CompletableFuture«ResponseEntity«AOTResultData»»": {
+      "type": "object",
+      "properties": {
+        "cancelled": {
+          "type": "boolean"
+        },
+        "completedExceptionally": {
+          "type": "boolean"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "numberOfDependents": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Employment": {
+      "type": "object",
+      "properties": {
+        "designation": {
+          "type": "string"
+        },
+        "employerName": {
+          "type": "string"
+        }
+      }
+    },
+    "Phone": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneType": {
+          "type": "string"
+        }
+      }
+    },
+    "CompletableFuture«ResponseEntity«AOTicketCurrentInfo»»": {
+      "type": "object",
+      "properties": {
+        "cancelled": {
+          "type": "boolean"
+        },
+        "completedExceptionally": {
+          "type": "boolean"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "numberOfDependents": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "BasicInfo": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      }
+    },
+    "AOTResultData": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string"
+        },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "BASICINFO",
+            "PHONE",
+            "EMPLOYMENT",
+            "ADDRESS",
+            "END"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "SUCCESS",
+            "FAILURE",
+            "INPROGRESS"
+          ]
+        },
+        "ticketID": {
+          "type": "string"
+        }
+      }
+    },
+    "AOTicketCurrentInfo": {
+      "type": "object",
+      "properties": {
+        "clientInputData": {
+          "$ref": "#/definitions/ClientInputData"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "BASICINFO",
+            "PHONE",
+            "EMPLOYMENT",
+            "ADDRESS",
+            "END"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "SUCCESS",
+            "FAILURE",
+            "INPROGRESS"
+          ]
+        }
+      }
+    },
+    "ClientInputData": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "basicInfo": {
+          "$ref": "#/definitions/BasicInfo"
+        },
+        "employment": {
+          "$ref": "#/definitions/Employment"
+        },
+        "phone": {
+          "$ref": "#/definitions/Phone"
+        }
+      }
+    }
+  }
+}
