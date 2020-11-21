@@ -1,4 +1,4 @@
-package com.app.akka.aot.actor;
+package com.app.akka.aot.actor.memory;
 
 import akka.Done;
 import akka.actor.typed.ActorSystem;
@@ -10,6 +10,7 @@ import akka.actor.typed.javadsl.Receive;
 import akka.cluster.sharding.typed.javadsl.ClusterSharding;
 import akka.cluster.sharding.typed.javadsl.Entity;
 import akka.cluster.sharding.typed.javadsl.EntityTypeKey;
+import com.app.akka.aot.actor.*;
 import com.app.akka.aot.model.ClientInputData;
 import com.app.akka.aot.service.DownstreamService;
 import com.app.akka.aot.util.Stage;
@@ -107,7 +108,7 @@ public class ClientAOTicket extends AbstractBehavior<Command> {
                                 if(stage.equals(Stage.END)){
                                     aoTicketActorHandler.setStage(stage);
                                     this.stage = stage;
-                                    return new AOTicketSuccessHandler(aoTicketActorHandler.getTicketID(), aoTicketActorHandler.getStage(), "Account Creation Completed Successfully", aoTicketActorHandler.getReplyTo());
+                                    return new AOTicketSuccessHandler(aoTicketActorHandler.getTicketID(), aoTicketActorHandler.getStage(), "Account Creation Completed Successfully",aoTicketActorHandler.getClientInputData(),  aoTicketActorHandler.getReplyTo());
                                 }
                                 else
                                     return new AOTicketActorHandler(aoTicketActorHandler.getClientInputData(),
@@ -120,8 +121,9 @@ public class ClientAOTicket extends AbstractBehavior<Command> {
                                 errors.add("Error interacting with " + aoTicketActorHandler.getStage().toString() + "  Handler Service");
                                 return new AOTTicketFailureHandler(aoTicketActorHandler.getTicketID(),
                                         aoTicketActorHandler.getStage(),
-                                        aoTicketActorHandler.getReplyTo(),
-                                        "Error interacting with " + aoTicketActorHandler.getStage().toString() + "  Handler Service");
+                                        "Error interacting with " + aoTicketActorHandler.getStage().toString() + "  Handler Service",
+                                        aoTicketActorHandler.getClientInputData(),
+                                        aoTicketActorHandler.getReplyTo());
                             }
                         });
     }
